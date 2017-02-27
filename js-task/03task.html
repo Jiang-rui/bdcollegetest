@@ -51,13 +51,16 @@ function getData() {
   */
   var data=[];
   var lis=source.children;
+  // for(var i=0,len=lis.length;i<len;i++){
+  //     var cityitem=[],
+  //     city=lis[i].innerHTML.substring(0,2),
+  //     zhiliang=lis[i].children[0].innerHTML;
+  //     cityitem.push(city);
+  //     cityitem.push(zhiliang);
+  //     data.push(cityitem);
+  // }
   for(var i=0,len=lis.length;i<len;i++){
-      var cityitem=[],
-      city=lis[i].innerHTML.substring(0,2),
-      zhiliang=lis[i].children[0].innerHTML;
-      cityitem.push(city);
-      cityitem.push(zhiliang);
-      data.push(cityitem);
+        data.push(lis[i].innerText.split("空气质量："));
   }
   return data;
 
