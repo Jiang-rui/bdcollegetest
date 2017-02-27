@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.input-box button{
+			border-radius: 5px;
+		}
+		.content-box{
+			list-style: none;
+		}
+		.content-box li{
+			width: 40px;
+			height: 40px;
+			font-size: 26px;
+			background-color: red;
+			float:left;
+			text-align: center;
+			margin-right: 10px;
+		}
+		.content-box li:hover,.input-box button:hover{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<div class="input-box" id="input_box">
+	<input type="text" id="input"> <button id="left-in">左侧入</button>
+	<button id="right-in">右侧入</button>
+	<button id="left-out">左侧出</button>
+	<button id="right-out">右侧出</button>
+</div>
+	<ul class="content-box" id="content_box">
+		<li>10</li>
+		<li>3</li>
+		<li>6</li>
+		<li>5</li>
+		<li>12</li>
+		<li>34</li>
+		<li>9</li>
+	</ul>
+	
+</body>
+<script>
+	var input=document.getElementById("input");
+	var control=document.getElementById("input_box");
+	var content=document.getElementById("content_box");
+	var lis=content.children;
+	var len=lis.length;
+	// input.addEventListener("forminput", check(input.value), false);
+	// 给按钮绑定事件，事件委托
+	control.onclick=function (event) {
+		/* body... */
+		handleClick(event);
+	}
+	// 给li元素绑定点击事件
+	for(var i=0;i<len;i++){
+		lis[i].index=i;
+		lis[i].onclick=function () {
+			/* body... */
+			content.removeChild(lis[this.index]);
+			alert(this.innerText);
+		}
+		// lis[i].addEventListener("click",function (event) {
+		// 	/* body... */
+
+		// 	content.removeChild(lis[this.index]);
+		// 	console.log(this.index);
+		// },false);
+	}
+
+
+
+// 处理按钮点击事件的程序
+	function handleClick (event) {
+		// body... 
+		event=event||window.event;
+		var target=event.target||event.srcElement;
+		var newli;
+		var id=target.id;
+		var isNumber=checkNum(input.value);
+		if(id=="left-in"){
+			if(isNumber){
+				newli=document.createElement("li");
+		 		newli.innerText=input.value;
+				content.insertBefore(newli,content.children[0]);
+				// alert(typeof parseInt(input.value));
+			}else if(input.value==""){
+				alert("请输入内容");
+			}else {
+				alert("请输入数字");
+			}
+			
+		}else if(id=="right-in"){
+			if(isNumber){
+				newli=document.createElement("li");
+		 		newli.innerText=input.value;
+		 		content.appendChild(newli);
+			}else if(input.value==""){
+				alert("请输入内容");
+			}else {
+				alert("请输入数字");
+			}
+			
+		}else if(id=="left-out"){
+			content.removeChild(lis[0]);
+			alert(lis[0].innerText);
+		}else if(id=="right-out") {
+			content.removeChild(lis[len-1]);
+			alert(lis[len-1]);
+		}
+	
+
+		// switch (target.id) {
+		// 	case left-in:
+		// 		// statements_1
+		// 		content.insertBefore(newli,content.children[0]);
+		// 		break;
+		// 	case right-in:
+		// 		content.appendChild(newli);
+		// 		break;
+		// 	case left-out:
+		// 		content.removeChild(lis[0]);
+		// 		break;
+		// 	case right-out:
+		// 		content.removeChild(lis[len-1]);
+		// 		break;
+		// };
+	}
+	// 检查表单输入内容
+	// function check(value) {
+	// 	// body... 
+		
+	// }
+	function checkNum (value) {
+		// body... 
+		var letters="0123456789";
+		for(var i=0,len=value.length;i<len;i++){
+			var c=value.charAt(i);
+			if(letters.indexOf(c)==-1){
+				return false;
+			}
+		}
+		return true;
+	}
+
+</script>
+</html>
