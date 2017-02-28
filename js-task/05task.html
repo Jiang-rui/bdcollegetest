@@ -9,8 +9,8 @@
 		}
 		.content-box{
 			list-style: none;
-			/*height: 1000px;
-			position: relative;*/
+			height: 1000px;
+			position: relative;
 		}
 		.content-box li{
 			width: 20px;
@@ -22,8 +22,8 @@
 			margin-right: 10px;
 			text-indent: -9999em;
 			overflow: hidden;
-			/*position: absolute;
-			bottom: 0;*/
+			/*position: absolute;*/
+			/*bottom: 0;*/
 		}
 		.content-box li:hover,.input-box button:hover{
 			cursor: pointer;
@@ -55,15 +55,29 @@
 	var content=document.getElementById("content_box");
 	var lis=content.children;
 	var len=lis.length;
+
 	for(var i=0;i<len;i++){
 		lis[i].style.height=lis[i].innerText*10+"px";
+		// lis[i].style.bottom=lis[i].innerText*10+"px";
 	}
 	// input.addEventListener("forminput", check(input.value), false);
-	// 给按钮绑定事件，事件委托
-	control.onclick=function (event) {
+
+
+	// 给排序按钮绑定排序事件
+	document.getElementById("sort").addEventListener("click",function () {
 		/* body... */
-		handleClick(event);
-	}
+		var lisInnerText=[];
+		for(var i=0;i<len;i++){
+			lisInnerText.push(parseInt(lis[i].innerText));
+		}
+		var lisInnerText=myJs.sort(lisInnerText);
+		for(var i=0;i<len;i++){
+			lis[i].innerText=lisInnerText[i];
+			lis[i].style.height=lis[i].innerText*10+"px";
+		}
+	},false);
+	// 给按钮绑定事件，事件委托
+	 control.onclick=handleClick;
 
 	// 给li元素绑定点击事件
 	for(var i=0;i<len;i++){
@@ -82,7 +96,23 @@
 		// },false);
 	}
 
+	// 对ul的li元素进行排序
 
+// 对数组进行排序的算法，选择排序法
+// function sort (array) {
+// 	// body... 
+// 	var arrlen=array.length;
+// 	for(var i=0;i<arrlen;i++){
+// 		for(var j=i+1;j<arrlen;j++){
+// 			if(array[i]>array[j]){
+// 				var arrayitem=array[i];
+// 				array[i]=array[j];
+// 				array[j]=arrayitem;
+// 			}
+// 		}
+// 	}
+// 	return array;
+// }
 
 // 处理按钮点击事件的程序
 	function handleClick (event) {
@@ -91,7 +121,7 @@
 		var target=event.target||event.srcElement;
 		var newli;
 		var id=target.id;
-		var isNumber=checkNum(input.value);
+		var isNumber=myJs.checkNum(input.value);
 		// var valueNum=parseInt(input.value);
 		if(id=="left-in"){
 			if(len<=60){
@@ -105,6 +135,7 @@
 			 		newli.innerText=input.value;
 					content.insertBefore(newli,content.children[0]);
 					newli.style.height=input.value*10+"px";
+					// newli.style.bottom=input.value*10+"px";
 				}else {
 					alert("请输入数字");
 				}
@@ -138,6 +169,7 @@
 				 		newli.innerText=input.value;
 				 		content.appendChild(newli);
 				 		newli.style.height=input.value*10+"px";
+				 		// newli.style.bottom=input.value*10+"px";
 				}else {
 					alert("请输入数字");
 					}
@@ -190,7 +222,23 @@
 	// 	// body... 
 		
 	// }
-	function checkNum (value) {
+	// // 检查表单内容是否数字
+	// function checkNum (value) {
+	// 	// body... 
+	// 	var letters="0123456789";
+	// 	for(var i=0,len=value.length;i<len;i++){
+	// 		var c=value.charAt(i);
+	// 		if(letters.indexOf(c)==-1){
+	// 			return false;
+	// 		}
+	// 	}
+	// 	return true;
+	// }
+	// 检查表单内容是否为数字和选择排序的封装类
+var myJs={
+
+	
+	checkNum:function(value) {
 		// body... 
 		var letters="0123456789";
 		for(var i=0,len=value.length;i<len;i++){
@@ -200,7 +248,21 @@
 			}
 		}
 		return true;
+	},
+	sort:function(array) {
+	// body... 
+	var arrlen=array.length;
+	for(var i=0;i<arrlen;i++){
+		for(var j=i+1;j<arrlen;j++){
+			if(array[i]>array[j]){
+				var arrayitem=array[i];
+				array[i]=array[j];
+				array[j]=arrayitem;
+			}
+		}
 	}
-
+	return array;
+}
+}
 </script>
 </html>
