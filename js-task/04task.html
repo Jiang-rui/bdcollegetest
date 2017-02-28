@@ -104,11 +104,11 @@
 			}
 			
 		}else if(id=="left-out"){
-			content.removeChild(lis[0]);
-			alert(lis[0].innerText);
+			var that=content.removeChild(lis[0]);
+			alert(that.innerText);
 		}else if(id=="right-out") {
-			content.removeChild(lis[len-1]);
-			alert(lis[len-1]);
+			var that=content.removeChild(lis[len-1]);
+			alert(that.innerText);
 		}
 	
 
