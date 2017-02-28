@@ -132,7 +132,7 @@
 							return  "";
 						}
 					newli=document.createElement("li");
-			 		newli.innerText=input.value;
+			 		newli.innerText=parseInt(input.value);
 					content.insertBefore(newli,content.children[0]);
 					newli.style.height=input.value*10+"px";
 					// newli.style.bottom=input.value*10+"px";
@@ -166,7 +166,7 @@
 							return  "";
 						}
 						newli=document.createElement("li");
-				 		newli.innerText=input.value;
+				 		newli.innerText=parseInt(input.value);
 				 		content.appendChild(newli);
 				 		newli.style.height=input.value*10+"px";
 				 		// newli.style.bottom=input.value*10+"px";

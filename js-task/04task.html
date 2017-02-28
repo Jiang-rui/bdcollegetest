@@ -82,7 +82,7 @@
 			if(input.value!=""){
 				if(isNumber){
 				newli=document.createElement("li");
-		 		newli.innerText=input.value;
+		 		newli.innerText=parseInt(input.value);
 				content.insertBefore(newli,content.children[0]);
 			}else {
 				alert("请输入数字");
@@ -105,7 +105,7 @@
 			if(input.value!=""){
 				if(isNumber){
 				newli=document.createElement("li");
-		 		newli.innerText=input.value;
+		 		newli.innerText=parseInt(input.value);
 		 		content.appendChild(newli);
 			}else {
 				alert("请输入数字");
