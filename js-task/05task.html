@@ -9,15 +9,21 @@
 		}
 		.content-box{
 			list-style: none;
+			/*height: 1000px;
+			position: relative;*/
 		}
 		.content-box li{
-			width: 40px;
+			width: 20px;
 			height: 40px;
 			font-size: 26px;
 			background-color: red;
 			float:left;
 			text-align: center;
 			margin-right: 10px;
+			text-indent: -9999em;
+			overflow: hidden;
+			/*position: absolute;
+			bottom: 0;*/
 		}
 		.content-box li:hover,.input-box button:hover{
 			cursor: pointer;
@@ -30,6 +36,7 @@
 	<button id="right-in">右侧入</button>
 	<button id="left-out">左侧出</button>
 	<button id="right-out">右侧出</button>
+	<button id="sort">排序</button>
 </div>
 	<ul class="content-box" id="content_box">
 		<li>10</li>
@@ -48,9 +55,16 @@
 	var content=document.getElementById("content_box");
 	var lis=content.children;
 	var len=lis.length;
+	for(var i=0;i<len;i++){
+		lis[i].style.height=lis[i].innerText*10+"px";
+	}
 	// input.addEventListener("forminput", check(input.value), false);
 	// 给按钮绑定事件，事件委托
-	control.onclick=handleClick;
+	control.onclick=function (event) {
+		/* body... */
+		handleClick(event);
+	}
+
 	// 给li元素绑定点击事件
 	for(var i=0;i<len;i++){
 		lis[i].index=i;
@@ -78,18 +92,29 @@
 		var newli;
 		var id=target.id;
 		var isNumber=checkNum(input.value);
+		// var valueNum=parseInt(input.value);
 		if(id=="left-in"){
-			if(input.value!=""){
-				if(isNumber){
-				newli=document.createElement("li");
-		 		newli.innerText=input.value;
-				content.insertBefore(newli,content.children[0]);
-			}else {
-				alert("请输入数字");
+			if(len<=60){
+					if(input.value!=""){
+					if(isNumber){
+						if(parseInt(input.value)<10||parseInt(input.value)>100){
+							alert("输入的数字超出了范围");
+							return  "";
+						}
+					newli=document.createElement("li");
+			 		newli.innerText=input.value;
+					content.insertBefore(newli,content.children[0]);
+					newli.style.height=input.value*10+"px";
+				}else {
+					alert("请输入数字");
+				}
+				}else{
+					alert("请输入内容");
 				}
 			}else{
-				alert("请输入内容");
+				alert("添加元素个数超出限制")
 			}
+			
 			// if(input.value==" "){
 			// 	alert("请输入内容");
 			// }else if(isNumber){
@@ -102,17 +127,39 @@
 			// }
 			
 		}else if(id=="right-in"){
-			if(input.value!=""){
-				if(isNumber){
-				newli=document.createElement("li");
-		 		newli.innerText=input.value;
-		 		content.appendChild(newli);
-			}else {
-				alert("请输入数字");
+			if(len<=60){
+				if(input.value!=""){
+					if(isNumber){
+						if(parseInt(input.value)<10||parseInt(input.value)>100){
+							alert("输入的数字超出了范围");
+							return  "";
+						}
+						newli=document.createElement("li");
+				 		newli.innerText=input.value;
+				 		content.appendChild(newli);
+				 		newli.style.height=input.value*10+"px";
+				}else {
+					alert("请输入数字");
+					}
+				}else{
+					alert("请输入内容");
 				}
-			}else{
-				alert("请输入内容");
-			}
+				}else{
+					alert("添加元素个数超出限制")
+				}
+			
+			// if(input.value!=""){
+			// 	if(isNumber){
+			// 	newli=document.createElement("li");
+		 // 		newli.innerText=input.value;
+		 // 		content.appendChild(newli);
+		 // 		newli.style.height=input.value*10+"px";
+			// }else {
+			// 	alert("请输入数字");
+			// 	}
+			// }else{
+			// 	alert("请输入内容");
+			// }
 		}else if(id=="left-out"){
 			var that=content.removeChild(lis[0]);
 			alert(that.innerText);
