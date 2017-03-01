@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二叉树检索</title>
+	<style>
+		.box{
+			width: 1400px;
+			height: 200px;
+			display: -webkit-flex;
+			justify-content:space-around;
+			align-items:center;
+			margin: 100px auto 0;
+			border: 1px solid #888;
+		}
+		.box1,.box2{
+			 width: 600px;
+			 height: 140px;
+			 display: -webkit-flex;
+			 justify-content:space-around;
+			 align-items:center;
+			 border: 1px solid #888;
+		}
+		.box11,.box12,.box21,.box22{
+			 width: 250px;
+			 height: 60px;
+			 display: -webkit-flex;
+			 justify-content:space-around;
+			 align-items:center;
+			 border: 1px solid #888;
+		}
+		.box111,.box112,.box121,.box122,.box211,.box212,.box221,.box222{
+			 width: 100px;
+			 height: 40px;
+			 border: 1px solid #888;
+		}
+		.order{
+			width: 250px;
+			margin: 100px auto;
+		}
+		.order button{
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<!-- 1代表左边，2代表右边 -->
+	<div class="box" id="box">
+		<div class="box1" id="box1">
+			<div class="box11" id="box11">
+				<div class="box111" id="box111"></div>
+				<div class="box112" id="box112"></div>
+			</div>
+			<div class="box12" id="box12">
+				<div class="box121" id="box121"></div>
+				<div class="box122" id="box122"></div>
+			</div>
+		</div>
+		<div class="box2" id="box2">
+			<div class="box21" id="box21">
+				<div class="box211" id="box211"></div>
+				<div class="box212" id="box212"></div>
+			</div>
+			<div class="box22" id="box22">
+				<div class="box221" id="box221"></div>
+				<div class="box222" id="box222"></div>
+			</div>
+		</div>
+	</div><br/>
+	<div class="order" id="order">
+		<button id="preOrder">前序遍历</button>
+		<button id="inorder">中序遍历</button>
+		<button id="postOrder">后序遍历</button>
+	</div>
+</body>
+<script>
+	// 最底层节点
+	var box121=new Node("box121",null,null);
+	var box111=new Node("box111",null,null);
+	var box122=new Node("box122",null,null);
+	var box112=new Node("box112",null,null); 
+
+	var box221=new Node("box221",null,null);
+	var box211=new Node("box211",null,null);
+	var box222=new Node("box222",null,null);
+	var box212=new Node("box212",null,null);
+	// 第三层节点
+	var box11=new Node("box11",box111,box112);
+	var box12=new Node("box12",box121,box122);
+	var box21=new Node("box21",box211,box212);
+	var box22=new Node("box22",box221,box222);
+	// 第二层节点
+	var box1=new Node("box1",box11,box12);
+	var box2=new Node("box2",box21,box22);
+	// 根节点
+	var box=new Node("box",box1,box2);
+
+
+
+	var order=document.getElementById("order");
+	order.addEventListener("click", function (event) {
+		/* body... */
+
+		event=event||window.event;
+		var target=event.target||event.srcElement;
+		var id=target.id;
+		// alert(id);
+		if(id=="preOrder"){
+			preOrder(box);
+		}else if(id=="inOrder"){
+			inOrder(box);
+		}else if(id=="postOrder"){
+			postOrder(box);
+		}
+	}, false);
+	// 前序遍历函数
+	function preOrder (node) {
+		// body... 
+		setTimeout(function () {
+			/* body... */
+			if(!(node==null)){
+				node.show();
+				preOrder(node.left);
+				preOrder(node.right);
+			}
+		}, 2000);
+		
+	}
+	// 中序遍历函数
+	function inOrder (node) {
+		// body... 
+		if(!(node==null)){
+			inOrder(node.left);
+			node.show();
+			inOrder(node.right);
+		}
+	}
+	// 后序遍历函数
+	function postOrder (node) {
+		// body... 
+		if(!(node==null)){
+			postOrder(node.left);
+			postOrder(node.right);
+			node.show();
+		}
+	}
+	// 节点的构造函数
+	function Node (id,left,right) {
+		// body... 
+		this.id=id;
+		this.left=left;
+		this.right=right;
+		// 展示函数
+		this.show=show;
+	}
+	// 背景效果函数
+	function show(){
+		var divs=document.getElementsByTagName("div");
+		for(var i=0,len=divs.length;i<len;i++){
+			divs[i].style.backgroundColor="#fff";
+		}
+		document.getElementById(this.id).style.backgroundColor="red";
+	}
+</script>
+</html>
