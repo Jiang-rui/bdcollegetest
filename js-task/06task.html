@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.input-box button{
+			border-radius: 5px;
+		}
+		.content-box{
+			list-style: none;
+		}
+		.content-box li{
+			line-height: 40px;
+			font-size: 26px;
+			background-color: red;
+			display: inline-block;
+			text-align: center;
+			margin-right: 10px;
+		}
+		.content-box li:hover,.input-box button:hover{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="input-box" id="input_box">
+		<textarea id="input" cols="40" rows="20" placeholder="请输入内容：多个内容之间请以逗号分隔！"></textarea> <button id="left-in">左侧入</button>
+		<button id="right-in">右侧入</button>
+		<button id="left-out">左侧出</button>
+		<button id="right-out">右侧出</button><br/>
+		<input type="text" id="search-content"/><button id="search">查找</button>
+	</div>
+	<ul class="content-box" id="content_box">
+		<li>10</li>
+	</ul>
+	
+</body>
+<script>
+	var input=document.getElementById("input");
+	var control=document.getElementById("input_box");
+	var content=document.getElementById("content_box");
+	var lis=content.children;
+	var len=lis.length;
+	// input.addEventListener("forminput", check(input.value), false);
+	// 给按钮绑定事件，事件委托
+	control.onclick=handleClick;
+
+	
+	document.getElementById("search").onclick=function () {
+		/* body... */
+
+		var searchkey=document.getElementById("search-content").value;
+		// alert(searchkey);
+		// 正则表达式的实例
+		var pattern=new RegExp(searchkey,"g");
+		var searchRes=-1,i;
+		// alert(pattern);
+		len=lis.length;
+		for(i=0;i<len;i++){
+			var that=lis[i];
+			// 进行查找
+			searchRes=lis[i].innerText.search(pattern);
+			if(searchRes>-1){
+				// alert(11);
+				that.style.backgroundColor="yellow";
+			}
+		}
+	}
+	// 给li元素绑定点击事件
+	for(var i=0;i<len;i++){
+		lis[i].index=i;
+		lis[i].onclick=function () {
+			/* body... */
+			// this.index=i;
+			content.removeChild(lis[this.index]);
+			alert(this.innerText);
+		}
+		// lis[i].addEventListener("click",function (event) {
+		// 	/* body... */
+
+		// 	content.removeChild(lis[this.index]);
+		// 	console.log(this.index);
+		// },false);
+}
+
+
+// 处理按钮点击事件的程序
+function handleClick (event) {
+		// body... 
+		event=event||window.event;
+		var target=event.target||event.srcElement;
+		var id=target.id;
+		
+		if(id=="left-in"){
+			// if(input.value!=""){
+			// 	if(isNumber){
+			// 	newli=document.createElement("li");
+		 // 		newli.innerText=parseInt(input.value);
+			// 	content.insertBefore(newli,content.children[0]);
+			// }
+			// }else {
+			// 	alert("请输入数字");
+			// 	}
+			// }else{
+			// 	alert("请输入内容");
+			// }
+			if(input.value){
+				renderLi(input.value,"left");
+			}else{
+				alert("请输入内容");
+			}
+			
+		}else if(id=="right-in"){
+			if(input.value){
+				renderLi(input.value,"right");
+			}else{
+				alert("请输入内容");
+			}
+		}else if(id=="left-out"){
+			var that=content.removeChild(lis[0]);
+			alert(that.innerText);
+		}else if(id=="right-out") {
+			var that=content.removeChild(lis[len-1]);
+			alert(that.innerText);
+		}else if(id=="search"){
+			var searchkey=document.getElementById("search-content").value;
+		// alert(searchkey);
+		// 正则表达式的实例
+			var pattern=new RegExp(searchkey,"g");
+			var searchRes=-1,i;
+			// alert(pattern);
+			len=lis.length;
+			for(i=0;i<len;i++){
+				var that=lis[i];
+				// 进行查找
+				searchRes=lis[i].innerText.search(pattern);
+				if(searchRes>-1){
+					// alert(11);
+					that.style.backgroundColor="yellow";
+				}
+			}
+		}
+	}
+
+
+		// switch (target.id) {
+		// 	case left-in:
+		// 		// statements_1
+		// 		content.insertBefore(newli,content.children[0]);
+		// 		break;
+		// 	case right-in:
+		// 		content.appendChild(newli);
+		// 		break;
+		// 	case left-out:
+		// 		content.removeChild(lis[0]);
+		// 		break;
+		// 	case right-out:
+		// 		content.removeChild(lis[len-1]);
+		// 		break;
+		// };
+		function renderLi (value,direct) {
+		// body... 
+		var strarr=formatStr(value);
+		var arrlen=strarr.length;
+		for(var i=0;i<arrlen;i++){
+			var newli=document.createElement("li");
+			newli.innerHTML=strarr[i];
+			if(direct=="right"){
+				content.appendChild(newli);
+			}else if(direct=="left"){
+				content.insertBefore(newli,lis[0]);
+			}else{
+				console.log("请输入方向");
+			}
+			
+		}
+	}
+	function formatStr (str) {
+		
+		var strArr=[];
+		if(str.indexOf(",")>-1){
+			strArr=str.split(",");
+		} else{
+			strArr.push(str);
+		}
+		return strArr;
+	}
+</script>
+</html>
