@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		input{
+			outline:none;
+			border:none;
+			width: 300px;
+			height: 40px;
+			font-size:20px;
+			border:1px solid #e0e0e0;
+			border-radius: 5px;
+		}
+		span{
+			font-size: 16px;
+			margin-left: 55px;
+			color: #e0e0e0;
+		}
+		#button{
+			width: 60px;
+			height: 40px;
+			margin-left: 10px;
+			font-size: 20px;
+		}
+		.box{
+			width: 600px;
+			margin:100px auto;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		名称：<input type="text" id="input"> <button id="button">验证</button><br/>
+		<span id="tips">必填，长度为4~16个字符</span>
+	</div>
+</body>
+<script>
+	var input=document.getElementById("input");
+	var btn=document.getElementById("button");
+	var tips=document.getElementById("tips");
+	var tipsContent=["姓名不能为空","字符串长度不能小于4","字符串长度超过16","名称符合格式规范"];
+	btn.addEventListener("click", function () {
+		/* body... */
+		handler(input.value);
+	}, false);
+	// 检查字符串的长度，并返回
+	function checkout(str) {
+		// body... 
+		var len=str.length;
+		var reg = /[^\x00-\xff]/;
+		var strlen=0,number="0123456789";
+		for(var i=0;i<len;i++){
+			if(reg.test(str.charAt(i))){
+				strlen+=2;
+			}else{
+				strlen++
+			}
+		}
+		return  strlen;
+	}
+	// 点击事件的处理函数
+	function handler (str) {
+		// body... 
+		if(str==""){
+			input.style.borderColor="red";
+			tips.style.color="red";
+			tips.innerHTML=tipsContent[0];
+		}else{
+			var strlen=checkout(str);
+			if(strlen>0&&strlen<4){
+				input.style.borderColor="red";
+				tips.style.color="red";
+				tips.innerHTML=tipsContent[1];
+			}else if(strlen>=4&&strlen<=16){
+				input.style.borderColor="green";
+				tips.style.color="green";
+				tips.innerHTML=tipsContent[3];
+			}else{
+				input.style.borderColor="red";
+				tips.style.color="red";
+				tips.innerHTML=tipsContent[2];
+			}
+		}
+	}
+</script>
+</html>
