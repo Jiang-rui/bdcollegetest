@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		form{
+			width: 500px;
+			margin:100px auto;
+			font-size: 20px;
+		}
+		.social{
+			margin-left:200px;
+
+		}
+		.space{
+			width: 100%;
+			height: 40px;
+			background-color: #fff;
+		}
+		#school,#work{
+			font-size: 20px;
+			display: none;
+		}
+		
+		select,#work input{
+			border: none;
+			width: 200px;
+			height: 30px;
+			border: 1px solid #e0e0e0;
+			font-size: 20px;
+			border-radius: 5px;
+		}
+		#school-location{
+			width: 120px;
+		}
+		#school-name{
+			margin-left: 120px;
+		}
+		#work input{
+			height: 20px;
+			width: 398px;
+		}
+		#student,#social{
+			width: 15px;
+			height: 15px;
+		}
+		.current{
+			-webkit-appearance:none;
+			background-color: blue;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<form action="#" method="post">
+		<label for="student"><input type="radio" name="career" value="student" id="student"/>在校生</label>
+		<label for="social" class="social"><input type="radio" name="career" value="social" id="social"/>非在校生</label><br/>
+		<div class="space"></div>
+		<div id="school">
+			学校:
+			<select name="school-location" id="school-location">
+				<option value="1">北京</option>
+				<option value="2">北京</option>
+				<option value="3">北京</option>
+				<option value="4">北京</option>
+				<option value="5">北京</option>
+			</select>
+			<select id="school-name">
+				<option value="1">清华</option>
+				<option value="2">清华</option>
+				<option value="3">清华</option>
+				<option value="4">清华</option>
+				<option value="5">清华</option>
+				<option value="6">清华</option>
+			</select>
+
+		</div>
+		<div id="work">
+			就业单位：<input type="text">
+		</div>
+	</form>
+</body>
+<script>
+	var student=document.getElementById("student");
+	var social=document.getElementById("social");
+	var school=document.getElementById("school");
+	var work=document.getElementById("work");
+	// 当学生按钮被选中的事件
+	student.addEventListener("focus", function () {
+		selected(school,work);
+		this.setAttribute("class","current");
+		social.removeAttribute("class");
+	// 	this.style.backgroundColor="blue";
+	}, false);
+	// 当非学生按钮被选中的按钮
+	social.addEventListener("focus", function () {
+		/* body... */
+		selected(work,school);
+		this.setAttribute("class","current");
+		student.removeAttribute("class");
+	}, false);
+	// 选中时的处理函数
+	function selected (showElement,hiddenElement) {
+		showElement.style.display="block";
+		hiddenElement.style.display="none";
+	}
+</script>
+</html>
