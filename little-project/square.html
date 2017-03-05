@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul,ol{list-style: none;}
+	*{margin:0;padding:0;}
+	input{outline-style: none;
+		/*border: none;*/}
+	body{
+		background-color: #000;
+	}
+	.bigbox{
+		width: 600px;
+		height: 650px;
+		margin:300px auto;
+		background-color: #fff;
+	}
+	.box{
+		width: 500px;
+		height: 501px;
+		border: 1px solid #000;
+		margin:0 0 0 50px;
+		position: relative;
+	}
+	.box ul{
+		width: 500px;
+		height: 50px;
+		box-sizing:border-box;
+		border-top: 1px solid #e0e0e0;
+	}
+	.box ul.first{
+		border: none;
+	}
+	.box ul li{
+		float:left;
+		width: 50px;
+		height: 50px;
+		box-sizing:border-box;
+		border-left: 1px solid #e0e0e0;
+	}
+	.bigbox .left-index{
+		float:left;
+	}
+	.bigbox .left-index li{
+		width: 50px;
+		height: 50px;
+		font-size: 20px;
+		line-height: 50px;
+		text-align: center;
+	}
+	.bigbox .top-index{
+		width: 600px;
+		height: 50px;
+		padding-left: 50px;
+	}
+	.bigbox .top-index li{
+		width: 50px;
+		height: 50px;
+		float:left;
+		font-size: 20px;
+		line-height: 50px;
+		text-align: center;
+	}
+	.box #first{
+		border: none;
+	}
+	.box #lifirst{
+		border:none;
+	}
+	.control-box{
+		margin:20px 0 0 50px;
+	}
+	.control-box input{
+		border: none;
+		width: 300px;
+		height: 30px;
+		font-size: 20px;
+		border: 1px solid #e0e0e0;
+		border-radius: 4px;
+	}
+	.control-box button{
+		font-size: 18px;
+	    margin-left: 10px;
+	    cursor:pointer;
+	}
+	.box-square{
+		width: 50px;
+		height: 50px;
+		position: absolute;
+	}
+	.square{
+		display: block;
+		width: 50px;
+		height: 35px;
+		background-color: red;
+	}
+	.direction{
+		display: block;
+		width: 50px;
+		height: 15px;
+		background-color: blue;
+	}
+	</style>
+</head>
+<body>
+<div class="bigbox">
+		<ul class="top-index">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+		<ul class="left-index">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+	<div class="box" id="box">
+		<ul id="first">
+			<li id="lifirst" ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst" ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul>
+			<li  id="lifirst"  ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="box-square" id="square">
+			<span class="direction"></span>
+			<span class="square"></span>
+		</div>
+	</div>
+	<div class="control-box">
+		<input type="text" id="input"/><button id="button">执行</button>
+	</div>
+</div>
+</body>
+<!-- /*<script>
+	var uls=document.getElementById("box").children;
+	var input=document.getElementById("input");
+	var button=document.getElementById("button"); 
+
+	var square=new Square(5,5,top);
+	square.setDirect();
+	square.setLocation();
+
+	// 
+	button.addEventListener("click", function () {
+		/* body... */
+		if(input.value==null||input.value==""){
+			alert("请输入内容");
+		}else{
+			handleClick(input.value);
+		}
+	}, false);
+
+	// 处理点击事件的函数
+	function handleClick (str) {
+		if(str=="GO"){
+			square.forward();
+			square.setLocation();
+		}else if(str=="TUN LEF"){
+			square.direct="left";
+		}else if(str=="TUN RIG"){
+			square.direct="right";
+		}else if(str=="TUN BAC"){
+			suqare.direct="bottom";
+		}else if(str=="TUN TOP"){
+			square.direct="top";
+		}
+		square.setDirect();
+	}
+
+	// // 得到小方块位置的函数
+	// function getLocation (argument) {
+	// 	// body... 
+	// }
+	// 处理小方块位置的函数
+	// function setLocation(Xindex,Yindex) {
+	// 	// body...
+		
+	// }
+	// // 设置小方块方向的函数
+	// function setDirect (element,direct) {
+	// 	// body... 
+	// 	if(direct=="top"){
+	// 		element.classList.remove("top","bottom","right","left");
+	// 		element.classList.add("top");
+	// 	}else if(direct=="right"){
+	// 		element.classList.remove("top","bottom","right","left");
+	// 		element.classList.add("right");
+	// 	}else if(direct=="left"){
+	// 		element.classList.remove("top","bottom","right","left");
+	// 		element.classList.add("left");
+	// 	}else if(direct=="bottom"){
+	// 		element.classList.remove("top","bottom","right","left");
+	// 		element.classList.add("bottom");
+	// 	}
+	// }
+	// 判断小方块的行进方向
+	// function validate_move_direct(element,Xindex,Yindex) {
+	// 	// body... 
+	// 	var clist=element.classlist;
+		
+	// }
+/*// 小方块的类以及小方块应该有得属性和方法
+	function Square (Xindex,Yindex,direct) {
+		// body... 
+		var lis=uls[this.Yindex-1].children;
+		this.Xindex=Xindex;
+		this.Yindex=Yindex;
+		this.direct=direct;
+		// 设置方块朝向的函数
+		this.setDirect=function () {
+			/* body... */
+			if(this.direct=="top"){
+				lis[this.Xindex-1].classList.remove("top","bottom","right","left");
+				lis[this.Xindex-1].classList.add("top");
+			}else if(this.direct=="right"){
+				lis[this.Xindex-1].classList.remove("top","bottom","right","left");
+				lis[this.Xindex-1].classList.add("right");
+			}else if(this.direct=="left"){
+				lis[this.Xindex-1].classList.remove("top","bottom","right","left");
+				lis[this.Xindex-1].classList.add("left");
+			}else if(this.direct=="bottom"){
+				lis[this.Xindex-1].classList.remove("top","bottom","right","left");
+				lis[this.Xindex-1].classList.add("bottom");
+			}
+		};
+		// 设置方块位置的函数
+		this.setLocation=function () {
+			/* body... */
+			if(this.Xindex>10||this.Xindex<1||Yindex>10||Yindex<1){
+				alert("目标移动超出范围，请改变方向");
+			}else {
+				for(var i=0;i<10;i++){
+					for(var j=0;j<10;j++){
+						uls[i].children[j].removeAttribute("class");
+				}
+			}
+				lis[this.Xindex-1].setAttribute("class", "current");
+			}
+		};
+		// 前进指令的方法
+		this.forward=function () {
+			/* body... */
+			if(this.direct=="top"){
+				Yindex--;
+			}else if(this.direct=="bottom"){
+				Yindex++;
+			}else if(this.direct=="right"){
+				Xindex++;
+			}else if(this.direct=="left"){
+				Xindex--;
+			}
+		};
+		
+	}*/
+/*</script>*/ -->
+<script>
+	function $(id) {return document.getElementById(id);}
+	var square=$("square");
+	var btn=document.getElementById("button");
+	var input=document.getElementById("input");
+	var Xindex=5,Yindex=5;
+	var direct=0;
+	animate(Xindex,Yindex);
+	// 点击事件捕获
+	btn.addEventListener("click",function () {
+		handleClick(input.value);
+	},false);
+
+	// 点击按钮的事件处理函数
+	function handleClick (str) {
+		// direct代表小方块面对的方向,0代表方向朝上，1代表方向朝右，2代表方向朝下，3代表方向朝左
+		if(str==null||str==""){
+			alert("请输入内容");
+		}else{
+			if(str=="GO"){
+				switch(direct){
+					case 0:
+						Yindex--;
+						break;
+					case 1:
+						Xindex++;
+						break;
+					case 2:
+						Yindex++;
+						break;
+					case 3:
+						Xindex--;
+						break;
+				}
+			}else if(str=="TUN LEF"){
+				direct--;
+				square.style.webkitTransform="rotate(90deg)";
+			}else if(str=="TUN RIG"){
+				direct++;
+				square.style.webkitTransform="rotate(-90deg)";
+			}else if(str=="TUN BAC"){
+				direct+=2;
+				square.style.webkitTransform="rotate(180deg)";
+			}
+		 	if(direct>3){
+				direct=direct-4;
+			}else if(direct<0){
+				direct=direct+4;
+			}	
+		}
+		// 不让小方块出边界
+		Xindex=Xindex>10?10:Xindex;
+		Xindex=Xindex<0?0:Xindex;
+		Yindex=Yindex>10?10:Yindex;
+		Yindex=Yindex<0?0:Yindex;
+		// 运动
+		animate(Xindex,Yindex);
+	}
+	// 处理运动函数
+	function animate(Xindex,Yindex) {
+		// body... 
+		square.style.left=Xindex*50+"px";
+		square.style.top=Yindex*50+"px";
+	}
+</script>
+</html>
