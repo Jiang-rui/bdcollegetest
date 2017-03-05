@@ -419,24 +419,22 @@
 				}
 			}else if(str=="TUN LEF"){
 				direct--;
-				square.style.webkitTransform="rotate(90deg)";
 			}else if(str=="TUN RIG"){
 				direct++;
-				square.style.webkitTransform="rotate(-90deg)";
 			}else if(str=="TUN BAC"){
 				direct+=2;
-				square.style.webkitTransform="rotate(180deg)";
 			}
 		 	if(direct>3){
 				direct=direct-4;
 			}else if(direct<0){
 				direct=direct+4;
 			}	
+			square.style.webkitTransform="rotate("+direct*90+"deg)";
 		}
 		// 不让小方块出边界
-		Xindex=Xindex>10?10:Xindex;
+		Xindex=Xindex>9?9:Xindex;
 		Xindex=Xindex<0?0:Xindex;
-		Yindex=Yindex>10?10:Yindex;
+		Yindex=Yindex>9?9:Yindex;
 		Yindex=Yindex<0?0:Yindex;
 		// 运动
 		animate(Xindex,Yindex);
