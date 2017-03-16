@@ -5,9 +5,10 @@
 	<title>Document</title>
 </head>
 <body>
-	
+	<div id="listener"></div>
 </body>
 <script>
+	
 	function Observer(data) {
 		/* body... */
 		this.data=data;
@@ -26,6 +27,7 @@
 	}
 	Observer.prototype.convert=function (key,val) {
 		/* body... */
+		let _this=this;
 		Object.defineProperty(this.data, key,{
 			Enumerable:true,
 			Configurable:true,
@@ -39,11 +41,27 @@
 				/* body... */
 				console.log("你访问了"+key);
 				console.log('你修改了'+key);
-				if(newVal===val) return;
-				val=newVal;
+					// 加一个递归，假如设置的值是一个对象的话，进入递归函数
+					if((typeof newVal)==="object"){
+						 new Observer(newVal);
+					}
+					if(newVal===val) return;
+					val=newVal;
+					// 创建一个新的事件，当set函数被调用时，触发该事件,该事件以被修改的属性名作为名称
+					var event=document.createEvent("Event");
+					event.initEvent(key, true, true);
+					document.getElementById("listener").dispatchEvent(event);
 			}
 		})
 	};
+	// 实现了$watch方法，在这里监听之前被触发的自定义事件。
+	Observer.prototype.$watch=function (attr,fn) {
+		/* body... */
+			document.getElementById("listener").addEventListener(attr, function () {
+				/* body... */
+				fn();
+			}, false);
+	}
 
 	let app1=new Observer({
 		name:"jiangrui",
@@ -53,29 +71,9 @@
 		school:"anda",
 		major:"computer"
 	});
-
-
-	// es6
-	// function Observer (data) {
-	// 	// body... 
-	// 	return new Proxy(data,{
-	// 		get:function (target,key) {
-	// 			/* body... */
-	// 			if(key in target){
-	// 				console.log("你访问了"+key);
-	// 			    return target[key];
-	// 			}
-	// 		},
-	// 		set:function (target,key,newval) {
-	// 			/* body... */
-	// 			if(key in target){
-	// 				console.log("你访问了"+key);
-	// 				console.log("你修改了"+key);
-	// 				 if(target[key]===newval) return;
-	// 				 target[key]=newval;
-	// 			}
-	// 		}
-	// 	})
-	// }
+	app1.$watch("name",function (name) {
+		/* body... */
+		console.log("我现在叫:"+app1.data.name);
+	})
 </script>
 </html>
