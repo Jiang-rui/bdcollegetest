@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Observer(data) {
+		/* body... */
+		this.data=data;
+		this.walk(data);
+	}
+	Observer.prototype.walk=function (obj) {
+		/* body... */
+		let val;
+		for(let key in obj){
+			val=obj[key];
+			if((typeof val)==="object"){
+				new Observer(val);
+			}
+			this.convert(key,val);
+		}
+	}
+	Observer.prototype.convert=function (key,val) {
+		/* body... */
+		Object.defineProperty(this.data, key,{
+			Enumerable:true,
+			Configurable:true,
+			Writable:true,
+			get:function () {
+				/* body... */
+				console.log("你访问了"+key);
+				return val;
+			},
+			set:function (newVal) {
+				/* body... */
+				console.log("你访问了"+key);
+				console.log('你修改了'+key);
+				if(newVal===val) return;
+				val=newVal;
+			}
+		})
+	};
+
+	let app1=new Observer({
+		name:"jiangrui",
+		age:25
+	});
+	let app2=new Observer({
+		school:"anda",
+		major:"computer"
+	});
+	
+</script>
+</html>
